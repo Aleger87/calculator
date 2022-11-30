@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorParameterizedTest {
     private static final Integer NUM_1 = 10;
+    private static final Integer NUM_2 = 0;
     private final CalculatorService calculatorService = new CalculatorService();
 
     @ParameterizedTest
@@ -46,10 +47,9 @@ public class CalculatorParameterizedTest {
 
     }
 
-    @ParameterizedTest
-    @MethodSource("parametersForTestsNotNull")
-    public void nullPointerExceptionCheckData(Integer x, Integer y) {
-        Assertions.assertThrows(NullPointerException.class, () -> calculatorService.checkData(x,y), "неверное значение" );
+    @Test
+    public void illegalArgumentExceptionCheckNull() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculatorService.checkNull(0));
     }
 
     @Test
@@ -57,6 +57,7 @@ public class CalculatorParameterizedTest {
         Assertions.assertThrows(NullPointerException.class, () -> calculatorService.plus(NUM_1,null));
         Assertions.assertThrows(NullPointerException.class, () -> calculatorService.minus(null, NUM_1));
         Assertions.assertThrows(NullPointerException.class, () -> calculatorService.multiply(null,null));
+        Assertions.assertThrows(NullPointerException.class, () -> calculatorService.divide(NUM_1, null));
         Assertions.assertThrows(NullPointerException.class, () -> calculatorService.divide(NUM_1, 0));
     }
 
@@ -67,11 +68,5 @@ public class CalculatorParameterizedTest {
                 Arguments.of(10, -1),
                 Arguments.of(2, 1),
                 Arguments.of(1, 1));
-    }
-
-    public static Stream<Arguments> parametersForTestsNotNull() {
-        return Stream.of(
-                Arguments.of(null, 1),
-                Arguments.of(10, 0));
     }
 }

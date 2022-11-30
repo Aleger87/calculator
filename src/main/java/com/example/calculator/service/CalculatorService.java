@@ -19,6 +19,7 @@ public class CalculatorService {
     }
     public String multiply(Integer x, Integer y) {
         checkData(x, y);
+        checkNull(y);
         Integer z = x * y;
         return String.valueOf(x) + " * " + String.valueOf(y) + " = " + String.valueOf(z);
     }
@@ -33,6 +34,12 @@ public class CalculatorService {
     public void checkData(Integer x, Integer y) {
         if (y==0 || x == null || y == null) {
             throw new NullPointerException("Не заполнено число");
+        }
+    }
+
+    public void checkNull(Integer y) {
+        if (y == 0) {
+            throw new IllegalArgumentException("Деление на ноль");
         }
     }
 
