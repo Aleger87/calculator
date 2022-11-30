@@ -12,7 +12,7 @@ public class CalculatorService {
         Integer z = x + y;
         return String.valueOf(x) + " + " + String.valueOf(y) + " = " + String.valueOf(z);
     }
-    public String minus(int x, int y) {
+    public String minus(Integer x, Integer y) {
         checkData(x, y);
         Integer z = x - y;
         return String.valueOf(x) + " - " + String.valueOf(y) + " = " + String.valueOf(z);
@@ -25,16 +25,14 @@ public class CalculatorService {
 
     public String divide(Integer x, Integer y) {
         checkData(x, y);
-        if (y == 0) {
-            throw new IllegalArgumentException("Деление на ноль");
-        }
+
         Double z = (double) x / y;
         return String.valueOf(x) + " / " + String.valueOf(y) + " = " + String.valueOf(z);
     }
 
     public void checkData(Integer x, Integer y) {
-        if (x == null || y == null) {
-            throw new IllegalArgumentException("Не заполнено число");
+        if (y==0 || x == null || y == null) {
+            throw new NullPointerException("Не заполнено число");
         }
     }
 

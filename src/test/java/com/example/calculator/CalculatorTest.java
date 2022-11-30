@@ -1,5 +1,6 @@
 package com.example.calculator;
 import com.example.calculator.service.CalculatorService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -37,6 +38,5 @@ public class CalculatorTest {
         String standard = String.valueOf(NUM_1) + " / " + String.valueOf(NUM_2) + " = " + String.valueOf(numResult);
         assertEquals(standard, result);
     }
-
 
 }
